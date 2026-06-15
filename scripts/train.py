@@ -25,7 +25,7 @@ def parse_args():
     parser.add_argument("--workers", type=int, default=8)
     parser.add_argument("--optimizer", default="SGD")
     parser.add_argument("--project", default="runs/train")
-    parser.add_argument("--name", default="class30_our_WTconv_DYT")
+    parser.add_argument("--name", default="PDR10_our_WTconv_DYT")
     parser.add_argument("--cache", action="store_true", help="Enable dataset cache.")
     parser.add_argument("--device", default=None, help="GPU device id(s), e.g. 0 or 0,1.")
     parser.add_argument("--close-mosaic", type=int, default=0)

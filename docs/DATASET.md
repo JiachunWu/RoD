@@ -1,4 +1,4 @@
-# Dataset Notes
+﻿# Dataset Notes
 
 本仓库不上传任何数据集文件，只说明本项目使用过的数据组织方式。
 
@@ -35,14 +35,14 @@ names:
   30: wire
 ```
 
-## 2. 30class
+## 2. PDR-10
 
 - 任务类型：YOLO 目标检测
 - 类别数：10
 - 目录结构：
 
 ```text
-30class/
+PDR-10/
 ├── images/
 │   ├── train/
 │   ├── val/
@@ -56,7 +56,7 @@ names:
 - `data.yaml` 示例：
 
 ```yaml
-path: /path/to/30class
+path: /path/to/PDR-10
 train: images/train
 val: images/val
 test: images/test

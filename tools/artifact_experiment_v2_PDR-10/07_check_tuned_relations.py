@@ -1,4 +1,4 @@
-import argparse
+﻿import argparse
 import csv
 import json
 import math
@@ -21,10 +21,10 @@ def read_rows(paths):
 
 
 def clean_model_name(name):
-    if "classes30_1280_bspc" in name:
-        return "classes30_1280_bspc"
-    if "classes30_base_1280n" in name:
-        return "classes30_base_1280n"
+    if "PDR10_1280_bspc" in name:
+        return "PDR10_1280_bspc"
+    if "PDR10_base_1280n" in name:
+        return "PDR10_base_1280n"
     return name
 
 
@@ -45,7 +45,7 @@ def main():
     compact_rows = []
     for row in rows:
         key = (clean_model_name(row.get("model_name", "")), row.get("subset_name", ""))
-        if key[0] not in {"classes30_1280_bspc", "classes30_base_1280n"}:
+        if key[0] not in {"PDR10_1280_bspc", "PDR10_base_1280n"}:
             continue
         if key[1] not in {"artifact_present", "artifact_absent"}:
             continue
@@ -74,10 +74,10 @@ def main():
     def ap(model, subset):
         return lookup.get((model, subset), {}).get("ap", float("nan"))
 
-    b_abs = ap("classes30_1280_bspc", "artifact_absent")
-    b_pre = ap("classes30_1280_bspc", "artifact_present")
-    base_abs = ap("classes30_base_1280n", "artifact_absent")
-    base_pre = ap("classes30_base_1280n", "artifact_present")
+    b_abs = ap("PDR10_1280_bspc", "artifact_absent")
+    b_pre = ap("PDR10_1280_bspc", "artifact_present")
+    base_abs = ap("PDR10_base_1280n", "artifact_absent")
+    base_pre = ap("PDR10_base_1280n", "artifact_present")
     close_margin = 0.01
     checks = {
         "bspc_absent_gt_bspc_present": b_abs > b_pre,
@@ -90,10 +90,10 @@ def main():
         "metric": "ap",
         "close_margin": close_margin,
         "values": {
-            "classes30_1280_bspc_artifact_absent": b_abs,
-            "classes30_1280_bspc_artifact_present": b_pre,
-            "classes30_base_1280n_artifact_absent": base_abs,
-            "classes30_base_1280n_artifact_present": base_pre,
+            "PDR10_1280_bspc_artifact_absent": b_abs,
+            "PDR10_1280_bspc_artifact_present": b_pre,
+            "PDR10_base_1280n_artifact_absent": base_abs,
+            "PDR10_base_1280n_artifact_present": base_pre,
         },
         "checks": checks,
         "all_required_checks_pass": all(checks.values()),

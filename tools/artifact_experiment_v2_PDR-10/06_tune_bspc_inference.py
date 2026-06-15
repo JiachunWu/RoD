@@ -1,4 +1,4 @@
-import argparse
+﻿import argparse
 import csv
 import math
 import os
@@ -55,7 +55,7 @@ TUNED_COLUMNS = [
 def parse_args():
     parser = argparse.ArgumentParser(description="Tune BSPC inference parameters without overwriting fair metrics.")
     parser.add_argument("--model", required=True)
-    parser.add_argument("--model-name", default="classes30_1280_bspc")
+    parser.add_argument("--model-name", default="PDR10_1280_bspc")
     parser.add_argument("--data-yamls", nargs="+", required=True)
     parser.add_argument("--subset-names", nargs="+", required=True)
     parser.add_argument("--gpus", nargs="+", default=["0", "1", "2", "3"])
@@ -69,8 +69,8 @@ def parse_args():
     parser.add_argument("--half-values", nargs="+", type=str_to_bool, default=[False])
     parser.add_argument("--batch", type=int, default=16)
     parser.add_argument("--fair-metrics", required=True)
-    parser.add_argument("--fair-base-name", default="classes30_base_1280n")
-    parser.add_argument("--fair-bspc-name", default="classes30_1280_bspc")
+    parser.add_argument("--fair-base-name", default="PDR10_base_1280n")
+    parser.add_argument("--fair-bspc-name", default="PDR10_1280_bspc")
     parser.add_argument("--objective-subset", default="all", choices=["all", "artifact_present", "artifact_absent"])
     parser.add_argument("--out-dir", required=True)
     parser.add_argument("--run-tag-prefix", default="tuned_bspc")

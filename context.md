@@ -1,4 +1,4 @@
-# Execution Context
+﻿# Execution Context
 
 ## 2026-06-15 15:25 - T1: 初始化打包任务
 
@@ -35,7 +35,7 @@
 ### 关键发现
 
 - 原项目目录本身不是一个已初始化的 Git 仓库，因此新目录需要作为可直接上传 GitHub 的独立发布目录来组织。
-- 与当前 30class / Dental_X 实验直接相关的脚本主要集中在 `tools/artifact_experiment*`、`train.py`、`val.py` 和 `ultralytics/cfg/models/12/`。
+- 与当前 PDR-10 / Dental_X 实验直接相关的脚本主要集中在 `tools/artifact_experiment*`、`train.py`、`val.py` 和 `ultralytics/cfg/models/12/`。
 - 目标模型 YAML 并不只依赖官方 `ultralytics`，还依赖自定义模块注册与实现，尤其是 `C3k2_WTConv`、`A2C2f_DFFN`、`A2C2f_DYT`。
 - 这些核心改动最终都落在 `ultralytics/nn/tasks.py`、`ultralytics/nn/extra_modules/block.py`、`wtconv2d.py`、`transformer.py`、`EVSSM.py` 一带，但当前实验实际用到的能力范围远小于整个大仓库。
 
@@ -63,18 +63,18 @@
 - 仅复制 YAML 和脚本不足以保证可运行，因此最终保留了自定义过的 `ultralytics/` 代码包，以覆盖当前实验依赖的模块注册与实现。
 - 已将 `scripts/train.py` 和 `scripts/val.py` 改为参数化入口，不再依赖本机绝对路径。
 - 已补充 `README.md`、`docs/DATASET.md` 和 `.gitignore`，明确说明不上传数据集、权重和输出目录。
-- `artifact_experiment` 与 `artifact_experiment_v2_30class` 两套分层评估脚本都已保留。
+- `artifact_experiment` 与 `artifact_experiment_v2_PDR-10` 两套分层评估脚本都已保留。
 - `python3 -m compileall` 已通过，说明新目录中的关键脚本语法正常。
 
 ### 已修改文件
 
 - `README.md`: 新增精简版仓库说明、安装方式、训练/验证示例和数据集说明入口。
-- `docs/DATASET.md`: 新增 `Dental_X` 与 `30class` 的目录结构和获取说明。
+- `docs/DATASET.md`: 新增 `Dental_X` 与 `PDR-10` 的目录结构和获取说明。
 - `.gitignore`: 新增忽略数据、权重、运行结果和缓存的规则。
 - `scripts/train.py`: 改为参数化训练入口。
 - `scripts/val.py`: 改为参数化验证入口。
 - `tools/artifact_experiment/`: 复制 `Dental_X` 分层评估脚本。
-- `tools/artifact_experiment_v2_30class/`: 复制 `30class` 分层评估、公平评估和 tuned 脚本。
+- `tools/artifact_experiment_v2_PDR-10/`: 复制 `PDR-10` 分层评估、公平评估和 tuned 脚本。
 - `configs/models12/`: 复制当前实验相关的模型 YAML。
 - `ultralytics/`: 复制当前实验运行所需的自定义源码包。
 - `requirements.txt`, `pyproject.toml`, `LICENSE`: 复制基础依赖和许可文件。

@@ -1,4 +1,4 @@
-import argparse
+﻿import argparse
 import math
 from pathlib import Path
 
@@ -276,13 +276,13 @@ def chinese_report_text(args, summary, strat_rows, perf_rows, drop_rows_out, met
     commands = read_commands(args.out_dir)
     return "\n".join(
         [
-            "# 30class Artifact-source-based 分层评估中文报告",
+            "# PDR-10 Artifact-source-based 分层评估中文报告",
             "",
             "## 1. 任务流程",
             "",
-            "1. 根据 `artifact-experimen-v2.md` 的定义读取 30class YOLO 数据集，并构建 train/val/test 的 artifact-source manifest。",
+            "1. 根据 `artifact-experimen-v2.md` 的定义读取 PDR-10 YOLO 数据集，并构建 train/val/test 的 artifact-source manifest。",
             "2. 基于 test manifest 生成 all、artifact_absent、artifact_present 三个测试子集，同时在输出目录中创建评估副本视图，避免修改原始数据目录。",
-            "3. 使用统一推理/验证参数公平评估三个权重：`classes30_base_1280n`、`classes30_1280_bspc`、`class30_our_WTconv_dff2`。",
+            "3. 使用统一推理/验证参数公平评估三个权重：`PDR10_base_1280n`、`PDR10_1280_bspc`、`PDR10_our_WTconv_dff2`。",
             "4. 使用 4 张物理 GPU 并行执行评估分片，每个 worker 通过 `CUDA_VISIBLE_DEVICES` 隔离到单张卡，最终合并 9 行公平结果。",
             "5. 生成分层统计表、检测指标表、相对性能变化表和最终报告。",
             "",
@@ -326,7 +326,7 @@ def chinese_report_text(args, summary, strat_rows, perf_rows, drop_rows_out, met
             "",
             "## 5. 实验分析",
             "",
-            "`classes30_1280_bspc` 在全测试集 AP=0.3360、artifact_present AP=0.3373，均为三模型最高，因此改进模型在主要公平对比和 artifact-source present 鲁棒性场景中表现最好。artifact_absent 子集由基线模型 AP=0.3402 最高，说明无 artifact-source 图像上基线仍有优势。",
+            "`PDR10_1280_bspc` 在全测试集 AP=0.3360、artifact_present AP=0.3373，均为三模型最高，因此改进模型在主要公平对比和 artifact-source present 鲁棒性场景中表现最好。artifact_absent 子集由基线模型 AP=0.3402 最高，说明无 artifact-source 图像上基线仍有优势。",
             "",
             "由于 BSPC 已在公平共享参数下取得 all 与 artifact_present 的最高 AP，本次没有执行 tuned 推理超参数补测，避免将调参结果与公平结果混淆。",
             "",
