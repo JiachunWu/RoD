@@ -4,47 +4,47 @@ Code for the manuscript: RoDNet: Spatial-Frequency Collaboration and Artifact-Aw
 
 ## Ultralytics YOLO11/12 Dental Minimal Release
 
-这是一个面向 GitHub 公开的精简版本，来源于本地项目 `/data/wjc/ultralytics-yolo11-main`，只保留了与牙科全景片检测实验直接相关的代码、模型配置和评估脚本。
+This is a minimal public GitHub release derived from the local project `/data/wjc/ultralytics-yolo11-main`. It keeps only the code, model configurations, and evaluation scripts directly related to dental panoramic radiograph detection experiments.
 
-本仓库不包含以下内容：
+This repository does not include:
 
-- 数据集图片与标签
-- 训练权重
-- `runs/`、`outputs/`、`result/` 等实验产物
-- 示例工程、测试缓存和无关大文件
+- Dataset images and labels
+- Training weights
+- Experiment artifacts such as `runs/`, `outputs/`, and `result/`
+- Demo projects, test caches, and unrelated large files
 
-## 保留内容
+## Included Content
 
 - `ultralytics/`
-  自定义过的 Ultralytics 源码，包含当前实验依赖的自定义模块注册与实现。
+  Customized Ultralytics source code, including the custom module registration and implementations required by the experiments.
 - `scripts/train.py`
-  参数化训练入口。
+  Parameterized training entry point.
 - `scripts/val.py`
-  参数化验证入口。
+  Parameterized validation entry point.
 - `tools/artifact_experiment/`
-  `Dental_X` 数据集的 artifact-source 分层评估脚本。
+  Artifact-source stratified evaluation scripts for the `Dental_X` dataset.
 - `tools/artifact_experiment_v2_PDR-10/`
-  `PDR-10` 数据集的分层评估、公平评估和 tuned 推理脚本。
+  Stratified evaluation, fair evaluation, and tuned inference scripts for the `PDR-10` dataset.
 - `docs/artifact-experimen.md`
-  `Dental_X` 版本实验方案。
+  Experiment plan for the `Dental_X` version.
 - `docs/artifact-experimen-v2.md`
-  `PDR-10` 版本实验方案。
+  Experiment plan for the `PDR-10` version.
 
-## 环境
+## Environment
 
-推荐 Python 3.10+，并先安装依赖：
+Python 3.10+ is recommended. Install the dependencies first:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-如果你使用的是干净环境，通常还需要手动确认这些包可用：
+If you are using a clean environment, you may also need to make sure these packages are available:
 
 ```bash
 pip install ultralytics prettytable pywavelets dill timm
 ```
 
-## 训练示例
+## Training Example
 
 ```bash
 python scripts/train.py \
@@ -53,7 +53,7 @@ python scripts/train.py \
   --name PDR10_our_WTconv_DYT
 ```
 
-## 验证示例
+## Validation Example
 
 ```bash
 python scripts/val.py \
@@ -63,24 +63,24 @@ python scripts/val.py \
   --save-json
 ```
 
-## 分层评估
+## Stratified Evaluation
 
-两套分层评估脚本都保留了：
+Both sets of stratified evaluation scripts are retained:
 
-- `tools/artifact_experiment/`: 对 `Dental_X` 使用两模型分层评估。
-- `tools/artifact_experiment_v2_PDR-10/`: 对 `PDR-10` 使用三模型公平评估与 tuned 推理补测。
+- `tools/artifact_experiment/`: two-model stratified evaluation for `Dental_X`.
+- `tools/artifact_experiment_v2_PDR-10/`: three-model fair evaluation and tuned inference follow-up tests for `PDR-10`.
 
-这些脚本默认需要你自己提供本地数据集路径和权重路径。
+By default, these scripts require you to provide local dataset paths and weight paths.
 
-## 数据集说明
+## Dataset Notes
 
-本项目实验中使用了两个 YOLO 格式数据集：
+The experiments use two YOLO-format datasets:
 
 - `Dental_X`
-  31 类牙科全景片检测数据集，目录结构为 `images/{train,val,test}` 与 `labels/{train,val,test}`。
+  A 31-class dental panoramic radiograph detection dataset with the directory structure `images/{train,val,test}` and `labels/{train,val,test}`.
 - `PDR-10`
-  10 类牙科全景片检测数据集，目录结构同样为标准 YOLO 检测格式。
+  A 10-class dental panoramic radiograph detection dataset using the same standard YOLO detection format.
 
-仓库不提供数据本体。如果你已有对应数据，只需准备自己的 `data.yaml`。如果没有，需要从原始标注来源或你的项目数据管理位置自行获取后，整理为标准 YOLO 检测格式。
+The repository does not provide the datasets themselves. If you already have the corresponding data, prepare your own `data.yaml`. Otherwise, obtain the data from the original annotation source or your project data management location, then organize it into the standard YOLO detection format.
 
-更具体的使用方式见 [docs/DATASET.md](docs/DATASET.md)。
+For more detailed usage, see [docs/DATASET.md](docs/DATASET.md).
