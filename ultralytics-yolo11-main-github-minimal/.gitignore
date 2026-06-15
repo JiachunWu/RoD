@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual env
+.venv/
+venv/
+env/
+
+# Training / evaluation outputs
+runs/
+outputs/
+result/
+*.pt
+*.onnx
+*.engine
+*.torchscript
+*.cache
+predictions.json
+paper_data.txt
+
+# Dataset placeholders
+datasets/
+data/
+images/
+labels/
+
+# OS files
+.DS_Store

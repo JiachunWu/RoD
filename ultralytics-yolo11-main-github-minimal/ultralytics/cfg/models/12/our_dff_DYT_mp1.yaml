@@ -1,0 +1,73 @@
+# Ultralytics 🚀 AGPL-3.0 License
+# YOLO12-Dental-BSPC (Safe Version)
+# Theme: "Post-Sampling Signal Restoration & Dual-Domain Enhancement"
+# Strictly replaces modules within the standard YOLOv12 architecture.
+
+nc: 80 # number of classes
+scales: 
+  n: [0.50, 0.25, 1024] 
+  # s: [0.50, 0.50, 1024] 
+  # m: [0.50, 1.00, 512] 
+  # l: [1.00, 1.00, 512] 
+  # x: [1.00, 1.50, 512] 
+
+# YOLO12n backbone
+backbone:
+  # [from, repeats, module, args]
+  - [-1, 1, Conv,   [64, 3, 2]]      # 0-P1/2
+  - [-1, 1, Conv,   [128, 3, 2, 1, 2]] # 1-P2/4
+  
+  # [Replacement 1]: C3k2 -> C3k2_WTConv
+  # 动机: 在P2浅层就开始尝试恢复高频细节
+  - [-1, 2, C3k2_WTConv,   [256, True, 0.25]] # 2
+  
+  - [-1, 1, Conv,   [256, 3, 2, 1, 4]] # 3-P3/8
+  
+  # [Replacement 2]: C3k2 -> C3k2_WTConv
+  # 动机: "Post-Sampling Restoration" (采样后恢复)。
+  # 虽然上一层Conv丢失了信息，但利用小波卷积在此层从特征中重构纹理。
+  - [-1, 2, C3k2_WTConv,   [512, True, 0.25]] # 4
+  
+  - [-1, 1, Conv,   [512, 3, 2]]      # 5-P4/16
+  
+  # [Replacement 3]: A2C2f -> A2C2f_DFFN (频域增强)
+  # 动机: P4层包含主要纹理信息，DFFN在此处做频域校准最有效。
+  - [-1, 4, A2C2f_DFFN, [512, True, 4, False, 1]] # 6
+
+  - [-1, 1, Conv,   [1024, 3, 2]]     # 7-P5/32
+  
+  # [Replacement 4]: A2C2f -> A2C2f_DYT (空域门控)
+  # 动机: P5层负责全局语义，DYT在此处抑制大范围的结构性伪影。
+  - [-1, 4, A2C2f_DYT, [1024, True, 1,  False, 1]] # 8
+
+# YOLO12n head
+head:
+  - [-1, 1, nn.Upsample, [None, 2, "nearest"]]
+  - [[-1, 6], 1, Concat, [1]] # cat backbone P4
+  
+  # [Replacement 5]: A2C2f -> A2C2f_DFFN
+  # 保持 Neck P4 层与 Backbone P4 的频域处理一致性
+  - [-1, 2, A2C2f_DFFN, [512, False, -1, False, 1]] # 11
+
+  - [-1, 1, nn.Upsample, [None, 2, "nearest"]]
+  - [[-1, 4], 1, Concat, [1]] # cat backbone P3
+  
+  # [Replacement 6]: A2C2f -> A2C2f_DYT
+  # P3层负责小目标，必须用 DYT 进行精确的空间门控
+  - [-1, 2, A2C2f_DYT, [256, False, -1,  False, 1]] # 14
+
+  - [-1, 1, Conv, [256, 3, 2]]
+  - [[-1, 11], 1, Concat, [1]] # cat head P4
+  
+  # [Replacement 7]: A2C2f -> A2C2f_DFFN
+  # P4 输出前的频域精修
+  - [-1, 2, A2C2f_DFFN, [512, False, -1, False, 1]] # 17
+
+  - [-1, 1, Conv, [512, 3, 2]]
+  - [[-1, 8], 1, Concat, [1]] # cat head P5
+  
+  # [Replacement 8]: C3k2 -> C3k2_WTConv
+  # P5 输出前的最后一次信号重构，确保大目标的完整性
+  - [-1, 2, C3k2_WTConv, [1024, True]] # 20
+
+  - [[14, 17, 20], 1, Detect, [nc]] # Detect(P3, P4, P5)
