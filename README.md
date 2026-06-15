@@ -2,9 +2,7 @@
 
 Code for the manuscript: RoDNet: Spatial-Frequency Collaboration and Artifact-Aware Stabilization for Multi-Scale Dental Anomaly Detection.
 
-## Ultralytics YOLO11/12 Dental Minimal Release
-
-This is a minimal public GitHub release derived from the local project `/data/wjc/ultralytics-yolo11-main`. It keeps only the code, model configurations, and evaluation scripts directly related to dental panoramic radiograph detection experiments.
+## RoD Release
 
 This repository does not include:
 
@@ -67,17 +65,14 @@ python scripts/val.py \
 
 Both sets of stratified evaluation scripts are retained:
 
-- `tools/artifact_experiment/`: two-model stratified evaluation for `Dental_X`.
 - `tools/artifact_experiment_v2_PDR-10/`: three-model fair evaluation and tuned inference follow-up tests for `PDR-10`.
 
 By default, these scripts require you to provide local dataset paths and weight paths.
 
 ## Dataset Notes
 
-The experiments use two YOLO-format datasets:
+The experiments use a YOLO-format datasets:
 
-- `Dental_X`
-  A 31-class dental panoramic radiograph detection dataset with the directory structure `images/{train,val,test}` and `labels/{train,val,test}`.
 - `PDR-10`
   A 10-class dental panoramic radiograph detection dataset using the same standard YOLO detection format.
 
