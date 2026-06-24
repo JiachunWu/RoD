@@ -71,7 +71,7 @@ By default, these scripts require you to provide local dataset paths and weight 
 
 ## Dataset Notes
 
-The manuscript evaluates RoDNet on six datasets covering panoramic dental radiographs, chest X-ray images, and natural drone imagery. The released scripts in this repository primarily target `Dental_X` and `PDR-10`; the remaining datasets are documented here to make the paper's evaluation setup traceable.
+The manuscript evaluates RoDNet on six datasets covering panoramic dental radiographs, chest X-ray images, and natural drone imagery. The remaining datasets are documented here to make the paper's evaluation setup traceable.
 
 - `ODet3`
   A 31-class oral disease detection dataset based on panoramic dental radiographs. The manuscript uses 9,676 training images, 2,764 validation images, and 1,378 test images. It can be obtained from the Roboflow Universe release: [ODet3: Oral Disease Detection Dataset, Release 3](https://universe.roboflow.com/di-hastalklar/dis-hastaliklarinin-tespiti3-vukvr).
