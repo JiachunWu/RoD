@@ -71,11 +71,28 @@ By default, these scripts require you to provide local dataset paths and weight 
 
 ## Dataset Notes
 
-The experiments use a YOLO-format datasets:
+The manuscript evaluates RoDNet on six datasets covering panoramic dental radiographs, chest X-ray images, and natural drone imagery. The released scripts in this repository primarily target `Dental_X` and `PDR-10`; the remaining datasets are documented here to make the paper's evaluation setup traceable.
+
+- `ODet3`
+  A 31-class oral disease detection dataset based on panoramic dental radiographs. The manuscript uses 9,676 training images, 2,764 validation images, and 1,378 test images. It can be obtained from the Roboflow Universe release: [ODet3: Oral Disease Detection Dataset, Release 3](https://universe.roboflow.com/di-hastalklar/dis-hastaliklarinin-tespiti3-vukvr).
+
+- `Dental_X` / `DXR-Pano`
+  A 31-class panoramic dental X-ray detection dataset. In the manuscript, this benchmark is reported as `DXR-Pano`; in the retained scripts, the same dataset family is referred to as `Dental_X`. The manuscript uses 9,674 training images, 2,760 validation images, and 1,380 test images. It can be obtained from Roboflow Universe: [Dental X-Ray Panoramic Dataset](https://universe.roboflow.com/celldetection-ok5sm/dental-x-ray-panoramic-dataset).
 
 - `PDR-10`
-  A 10-class dental panoramic radiograph detection dataset using the same standard YOLO detection format.
+  A 10-class panoramic dental radiograph detection dataset used as the main benchmark for ablation, efficiency, visualization, and artifact-source robustness analysis. The manuscript uses 9,382 training images, 2,854 validation images, and 1,577 test images. It can be obtained from Roboflow Universe: [PDR-10: Ten-Class Panoramic Dental Radiograph Dataset](https://universe.roboflow.com/p-jwewf/30classes-uxmcx).
 
-The repository does not provide the datasets themselves. If you already have the corresponding data, prepare your own `data.yaml`. Otherwise, obtain the data from the original annotation source or your project data management location, then organize it into the standard YOLO detection format.
+- `PerioXrays`
+  A single-class panoramic radiograph benchmark for clinical-oriented apical periodontitis detection. The manuscript uses 3,000 training images, 637 validation images, and 637 test images. The dataset is introduced by the PerioDet benchmark paper; obtain it from the official PerioDet/PerioXrays release channel associated with that work: [PerioDet: Large-Scale Panoramic Radiograph Benchmark for Clinical-Oriented Apical Periodontitis Detection](https://papers.miccai.org/miccai-2025/0687-Paper1336.html).
+
+- `CXR-Rad`
+  A 5-class chest X-ray radiograph detection dataset used to evaluate transferability to non-dental medical anomaly detection. The manuscript uses 4,493 training images, 1,242 validation images, and 496 test images. It can be obtained from Roboflow Universe: [A Dataset of Chest X-Ray Radiographs](https://universe.roboflow.com/willy-aapee/chest-x-ray-images-u9us8).
+
+- `VisDrone`
+  A 12-class natural-image multi-scale object detection benchmark collected from drone-mounted cameras. The manuscript uses 6,471 training images, 548 validation images, and 548 test images. It can be obtained from the official VisDrone dataset release: [VisDrone Dataset](https://github.com/VisDrone/VisDrone-Dataset).
+
+For `PDR-10`, the paper additionally performs artifact-source stratification under clinician guidance. Categories associated with restorative components, treatment traces, or implant-related structures are assigned to the with-artifact group; the remaining categories are assigned to the without-artifact group. A test image is treated as with-artifact if it contains at least one object from the with-artifact categories.
+
+The repository does not redistribute the datasets themselves. Download or request each dataset from its original provider, follow the provider's license and access terms, and prepare a YOLO-format `data.yaml`. For the retained scripts, the expected directory structure is `images/{train,val,test}` and `labels/{train,val,test}`.
 
 For more detailed usage, see [docs/DATASET.md](docs/DATASET.md).
