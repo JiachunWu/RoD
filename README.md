@@ -19,9 +19,6 @@ This repository does not include:
   Parameterized training entry point.
 - `scripts/val.py`
   Parameterized validation entry point.
-- `tools/artifact_experiment/`
-  Artifact-source stratified evaluation scripts for the `Dental_X` dataset.
-- `tools/artifact_experiment_v2_PDR-10/`
   Stratified evaluation, fair evaluation, and tuned inference scripts for the `PDR-10` dataset.
 - `docs/artifact-experimen.md`
   Experiment plan for the `Dental_X` version.
