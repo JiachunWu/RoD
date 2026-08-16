@@ -11,7 +11,7 @@ def parse_args():
     parser = argparse.ArgumentParser(description="Train a custom YOLO12 dental model.")
     parser.add_argument(
         "--model",
-        default="ultralytics/cfg/models/12/our_WTconv_DYT.yaml",
+        default="",
         help="Model YAML path.",
     )
     parser.add_argument(
