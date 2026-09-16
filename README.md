@@ -71,13 +71,13 @@ By default, these scripts require you to provide local dataset paths and weight 
 The manuscript evaluates RoDNet on six datasets covering panoramic dental radiographs, chest X-ray images, and natural drone imagery. The remaining datasets are documented here to make the paper's evaluation setup traceable.
 
 - `ODet3`
-  A 31-class oral disease detection dataset based on panoramic dental radiographs. The manuscript uses 9,676 training images, 2,764 validation images, and 1,378 test images. It can be obtained from the Roboflow Universe release: [ODet3: Oral Disease Detection Dataset, Release 3](https://universe.roboflow.com/di-hastalklar/dis-hastaliklarinin-tespiti3-vukvr).
+  A 31-class oral disease detection dataset based on panoramic dental radiographs. The manuscript uses 9,676 training images, 2,764 validation images, and 1,378 test images. It can be obtained from the Roboflow Universe release: [ODet3: Oral Disease Detection Dataset, Release 3](https://universe.roboflow.com/jiachun/odet3).
 
-- `Dental_X` / `DXR-Pano`
-  A 31-class panoramic dental X-ray detection dataset. In the manuscript, this benchmark is reported as `DXR-Pano`; in the retained scripts, the same dataset family is referred to as `Dental_X`. The manuscript uses 9,674 training images, 2,760 validation images, and 1,380 test images. It can be obtained from Roboflow Universe: [Dental X-Ray Panoramic Dataset](https://universe.roboflow.com/celldetection-ok5sm/dental-x-ray-panoramic-dataset).
+- `DXR-Pano`
+  A 31-class panoramic dental X-ray detection dataset. In the manuscript, this benchmark is reported as `DXR-Pano`. The manuscript uses 9,674 training images, 2,760 validation images, and 1,380 test images. It can be obtained from Roboflow Universe: [DXR-Pano Dataset](https://universe.roboflow.com/jiachun/dxr-pano).
 
 - `PDR-10`
-  A 10-class panoramic dental radiograph detection dataset used as the main benchmark for ablation, efficiency, visualization, and artifact-source robustness analysis. The manuscript uses 9,382 training images, 2,854 validation images, and 1,577 test images. It can be obtained from Roboflow Universe: [PDR-10: Ten-Class Panoramic Dental Radiograph Dataset](https://universe.roboflow.com/p-jwewf/30classes-uxmcx).
+  A 10-class panoramic dental radiograph detection dataset used as the main benchmark for ablation, efficiency, visualization, and artifact-source robustness analysis. The manuscript uses 9,382 training images, 2,854 validation images, and 1,577 test images. It can be obtained from Roboflow Universe: [PDR-10: Ten-Class Panoramic Dental Radiograph Dataset](https://universe.roboflow.com/jiachun/pdr-10).
 
 - `PerioXrays`
   A single-class panoramic radiograph benchmark for clinical-oriented apical periodontitis detection. The manuscript uses 3,000 training images, 637 validation images, and 637 test images. The dataset is introduced by the PerioDet benchmark paper; obtain it from the official PerioDet/PerioXrays release channel associated with that work: [PerioDet: Large-Scale Panoramic Radiograph Benchmark for Clinical-Oriented Apical Periodontitis Detection](https://papers.miccai.org/miccai-2025/0687-Paper1336.html).
