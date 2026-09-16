@@ -74,7 +74,7 @@ The manuscript evaluates RoDNet on six datasets covering panoramic dental radiog
   A 31-class oral disease detection dataset based on panoramic dental radiographs. The manuscript uses 9,676 training images, 2,764 validation images, and 1,378 test images. It can be obtained from the Roboflow Universe release: [ODet3: Oral Disease Detection Dataset, Release 3](https://universe.roboflow.com/jiachun/odet3).
 
 - `DXR-Pano`
-  A 31-class panoramic dental X-ray detection dataset. In the manuscript, this benchmark is reported as `DXR-Pano`. The manuscript uses 9,674 training images, 2,760 validation images, and 1,380 test images. It can be obtained from Roboflow Universe: [DXR-Pano Dataset](https://universe.roboflow.com/jiachun/dxr-pano).
+  A 31-class panoramic dental X-ray detection dataset. The manuscript uses 9,674 training images, 2,760 validation images, and 1,380 test images. It can be obtained from Roboflow Universe: [DXR-Pano Dataset](https://universe.roboflow.com/jiachun/dxr-pano).
 
 - `PDR-10`
   A 10-class panoramic dental radiograph detection dataset used as the main benchmark for ablation, efficiency, visualization, and artifact-source robustness analysis. The manuscript uses 9,382 training images, 2,854 validation images, and 1,577 test images. It can be obtained from Roboflow Universe: [PDR-10: Ten-Class Panoramic Dental Radiograph Dataset](https://universe.roboflow.com/jiachun/pdr-10).
