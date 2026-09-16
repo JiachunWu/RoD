@@ -80,7 +80,7 @@ The manuscript evaluates RoDNet on six datasets covering panoramic dental radiog
   A 10-class panoramic dental radiograph detection dataset used as the main benchmark for ablation, efficiency, visualization, and artifact-source robustness analysis. The manuscript uses 9,382 training images, 2,854 validation images, and 1,577 test images. It can be obtained from Roboflow Universe: [PDR-10: Ten-Class Panoramic Dental Radiograph Dataset](https://universe.roboflow.com/jiachun/pdr-10).
   
 - `DentAI`
-  A 5-class panoramic dental radiograph detection dataset. The manuscript uses 9,676 training images, 2,764 validation images, and 1,378 test images. It can be obtained from Roboflow Universe: [DentAI: 5-Class Panoramic Dental Radiograph Dataset](https://universe.roboflow.com/jiachun/dental-iyn0e-q0qfi).
+  A 5-class panoramic dental radiograph detection dataset. The manuscript uses 3,035 training images, 370 validation images, and 243 test images. It can be obtained from Roboflow Universe: [DentAI: 5-Class Panoramic Dental Radiograph Dataset](https://universe.roboflow.com/jiachun/dental-iyn0e-q0qfi).
 
 - `PerioXrays`
   A single-class panoramic radiograph benchmark for clinical-oriented apical periodontitis detection. The manuscript uses 3,000 training images, 637 validation images, and 637 test images. The dataset is introduced by the PerioDet benchmark paper; obtain it from the official PerioDet/PerioXrays release channel associated with that work: [PerioDet: Large-Scale Panoramic Radiograph Benchmark for Clinical-Oriented Apical Periodontitis Detection](https://papers.miccai.org/miccai-2025/0687-Paper1336.html).
